@@ -1,26 +1,41 @@
 <script setup lang="ts">
 import {ref, reactive, type Ref} from "vue";
 
- const likes: Ref<number> = ref(0);
- const dislikes: Ref<number> = ref(5);
+const count = 10;
+const counterState = {
+  _value: count,
+  get value() {
+    return this._value
+  },
+  set value(newValue: number) {
+    this._value = newValue
+  }
+}
 
-const addLike = () => likes.value++;
-const addDislike = () => dislikes.value++;
+
+
+
 </script>
 
 <template>
-  <div class="like container">
-    <div>Likes count:  <strong>{{ likes }} </strong> </div>
-    <button @click="addLike">like</button>
+  <div class="counter-container">
+    {{ counterState.value }}
   </div>
-  <div class="dislike container">
-    <div>Dislikes count:  <strong>{{ dislikes }} </strong> </div>
-    <button @click="addDislike">Dislike</button>
-  </div>
+  <button>Add</button>
+  <button> Reset</button>
 </template>
 
 <style scoped>
+.counter-container {
+  width: 100%;
+  height: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 10px;
 
+}
 .container{
   display: flex;
   align-items: center;
